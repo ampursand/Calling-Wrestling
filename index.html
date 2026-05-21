@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AEW Calling It!</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">CI</span>
+          <div>
+            <h1>AEW Calling It!</h1>
+            <p id="saveStatus">Saved locally</p>
+          </div>
+        </div>
+
+        <nav class="tabs" aria-label="Primary">
+          <button class="tab is-active" data-view="dashboard" type="button">Dashboard</button>
+          <button class="tab" data-view="events" type="button">Events</button>
+          <button class="tab" data-view="entities" type="button">Database</button>
+        </nav>
+
+        <div class="theme-control" aria-label="Color theme">
+          <button class="is-active" data-theme-choice="light" type="button">Light</button>
+          <button data-theme-choice="dark" type="button">Dark</button>
+        </div>
+
+        <div class="sidebar-actions">
+          <button id="exportButton" class="ghost-button" type="button">Export JSON</button>
+          <label class="ghost-button file-button">
+            Import JSON
+            <input id="importInput" type="file" accept="application/json">
+          </label>
+          <button id="resetButton" class="danger-button" type="button">Reset Demo Data</button>
+        </div>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Local-first prediction tracker</p>
+            <h2 id="viewTitle">Dashboard</h2>
+          </div>
+          <div class="toolbar">
+            <label>
+              <span>Year</span>
+              <select id="yearFilter"></select>
+            </label>
+            <label>
+              <span>Company</span>
+              <select id="companyFilter"></select>
+            </label>
+          </div>
+        </header>
+
+        <section id="dashboardView" class="view is-active" aria-labelledby="viewTitle">
+          <div class="metric-grid" id="metricGrid"></div>
+
+          <div class="split-layout">
+            <section class="panel">
+              <div class="panel-header">
+                <h3>Upcoming Card</h3>
+                <button id="quickEventButton" class="primary-button" type="button">New Event</button>
+              </div>
+              <div id="upcomingList" class="event-list"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-header">
+                <h3>Leaderboard</h3>
+                <button id="addPlayerButton" class="secondary-button" type="button">Add Player</button>
+              </div>
+              <div id="leaderboard" class="leaderboard"></div>
+            </section>
+          </div>
+
+          <section class="panel">
+            <div class="panel-header">
+              <h3>Recent Results</h3>
+              <span id="recentCount" class="pill"></span>
+            </div>
+            <div id="recentResults" class="result-table"></div>
+          </section>
+        </section>
+
+        <section id="eventsView" class="view" aria-labelledby="viewTitle">
+          <div class="event-workspace">
+            <section class="panel event-panel">
+              <div class="panel-header">
+                <h3>Events</h3>
+                <button id="newEventButton" class="primary-button" type="button">New Event</button>
+              </div>
+              <div id="eventList" class="event-list"></div>
+            </section>
+
+            <section class="panel detail-panel">
+              <form id="eventForm" class="event-form">
+                <div class="form-grid">
+                  <label>
+                    <span>Date</span>
+                    <input id="eventDate" type="date" required>
+                  </label>
+                  <label>
+                    <span>Company</span>
+                    <select id="eventCompany"></select>
+                  </label>
+                  <label>
+                    <span>Show</span>
+                    <select id="eventShow"></select>
+                  </label>
+                  <label>
+                    <span>Venue</span>
+                    <input id="eventVenue" type="text" placeholder="Arena, city">
+                  </label>
+                </div>
+                <label>
+                  <span>Notes</span>
+                  <textarea id="eventNotes" rows="2" placeholder="Story beats, stakes, surprises"></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="primary-button" type="submit">Save Event</button>
+                  <button id="deleteEventButton" class="danger-button" type="button">Delete Event</button>
+                </div>
+              </form>
+
+              <div class="matches-header">
+                <h3>Matches</h3>
+                <button id="addMatchButton" class="secondary-button" type="button">Add Match</button>
+              </div>
+              <div id="matchesList" class="matches-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="entitiesView" class="view" aria-labelledby="viewTitle">
+          <div class="database-grid">
+            <section class="panel">
+              <div class="panel-header">
+                <h3>Wrestlers</h3>
+                <button class="secondary-button" data-entity-kind="wrestler" type="button">Add</button>
+              </div>
+              <div id="wrestlerList" class="entity-list"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header">
+                <h3>Teams</h3>
+                <button class="secondary-button" data-entity-kind="team" type="button">Add</button>
+              </div>
+              <div id="teamList" class="entity-list"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header">
+                <h3>Shows</h3>
+                <button class="secondary-button" data-entity-kind="show" type="button">Add</button>
+              </div>
+              <div id="showList" class="entity-list"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header">
+                <h3>Companies</h3>
+                <button class="secondary-button" data-entity-kind="company" type="button">Add</button>
+              </div>
+              <div id="companyList" class="entity-list"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="matchDialog">
+      <form id="matchForm" method="dialog" class="dialog-form">
+        <div class="dialog-header">
+          <h3 id="matchDialogTitle">Match</h3>
+          <button class="icon-button" value="cancel" type="button" data-close-dialog aria-label="Close">x</button>
+        </div>
+        <label>
+          <span>Match</span>
+          <input id="matchTitle" type="text" required placeholder="Hangman Page vs Swerve Strickland">
+        </label>
+        <div class="form-grid">
+          <label>
+            <span>Type</span>
+            <select id="matchType">
+              <option>Singles</option>
+              <option>Tag Team</option>
+              <option>Trios</option>
+              <option>Multi-person</option>
+              <option>Title Match</option>
+              <option>Tournament</option>
+            </select>
+          </label>
+          <label>
+            <span>Division</span>
+            <select id="matchDivision">
+              <option>Men</option>
+              <option>Women</option>
+              <option>Tag</option>
+              <option>Trios</option>
+              <option>Open</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          <span>Participants</span>
+          <input id="matchParticipants" type="text" placeholder="Comma-separated names">
+        </label>
+        <div id="predictionFields" class="prediction-fields"></div>
+        <label>
+          <span>Winner</span>
+          <input id="matchWinner" type="text" placeholder="Leave blank until final">
+        </label>
+        <label>
+          <span>Result notes</span>
+          <textarea id="matchNotes" rows="2"></textarea>
+        </label>
+        <div class="form-actions">
+          <button class="primary-button" value="save" type="submit">Save Match</button>
+          <button id="deleteMatchButton" class="danger-button" value="delete" type="button">Delete Match</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="entityDialog">
+      <form id="entityForm" method="dialog" class="dialog-form">
+        <div class="dialog-header">
+          <h3 id="entityDialogTitle">Add</h3>
+          <button class="icon-button" value="cancel" type="button" data-close-dialog aria-label="Close">x</button>
+        </div>
+        <label>
+          <span>Name</span>
+          <input id="entityName" type="text" required>
+        </label>
+        <label>
+          <span>Company</span>
+          <input id="entityCompany" type="text" placeholder="AEW">
+        </label>
+        <label>
+          <span>Notes</span>
+          <textarea id="entityNotes" rows="2"></textarea>
+        </label>
+        <button class="primary-button" value="save" type="submit">Save</button>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
