@@ -2,8 +2,19 @@
   const storageKey = "calling-it-state-v1";
   const themeKey = "calling-it-theme";
   const databaseSeedVersionKey = "calling-it-database-seed-version";
-  const databaseSeedVersion = "2026-05-21-companies-shows-split";
+  const databaseSeedVersion = "2026-05-21-companies-shows-split-v2";
   let activeTheme = localStorage.getItem(themeKey) || "light";
+
+  const tvShowNames = new Set([
+    "Battle of the Belts",
+    "Collision",
+    "Dynamite",
+    "Rampage",
+    "Raw",
+    "Ring of Honor",
+    "Saturday Night Main Event",
+    "Smackdown"
+  ]);
 
   const showColors = {
     Dynamite: "show-Dynamite",
@@ -193,7 +204,7 @@
     return {
       players: next.players || seedState.players,
       companies: next.companies || seedState.companies,
-      shows: next.shows || seedState.shows,
+      shows: normalizeShows(next.shows || seedState.shows),
       wrestlers: next.wrestlers || seedState.wrestlers,
       teams: next.teams || seedState.teams,
       events: (next.events || []).map((event) => ({
@@ -208,7 +219,7 @@
     const merged = {
       ...next,
       companies: mergeEntities(seedState.companies, next.companies),
-      shows: mergeEntities(seedState.shows, next.shows),
+      shows: normalizeShows(mergeEntities(seedState.shows, next.shows)),
       wrestlers: mergeEntities(seedState.wrestlers, next.wrestlers),
       teams: mergeEntities(seedState.teams, next.teams)
     };
@@ -225,6 +236,17 @@
       if (!byName.has(key)) byName.set(key, item);
     });
     return Array.from(byName.values()).sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  function normalizeShows(shows) {
+    return (shows || []).map((show) => ({
+      ...show,
+      type: show.type || inferShowType(show.name)
+    }));
+  }
+
+  function inferShowType(name) {
+    return tvShowNames.has(name) ? "TV" : "PPV";
   }
 
   function saveState() {
@@ -434,8 +456,8 @@
 
   function renderEntities() {
     renderEntityList("company", state.companies, dom.companyList);
-    renderEntityList("show", state.shows.filter((show) => show.type === "TV"), dom.tvShowList);
-    renderEntityList("show", state.shows.filter((show) => show.type === "PPV"), dom.ppvShowList);
+    renderEntityList("show", state.shows.filter((show) => (show.type || inferShowType(show.name)) === "TV"), dom.tvShowList);
+    renderEntityList("show", state.shows.filter((show) => (show.type || inferShowType(show.name)) === "PPV"), dom.ppvShowList);
     renderEntityList("wrestler", state.wrestlers, dom.wrestlerList);
     renderEntityList("team", state.teams, dom.teamList);
   }
