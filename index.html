@@ -137,6 +137,27 @@
 
         <section id="entitiesView" class="view" aria-labelledby="viewTitle">
           <div class="database-grid">
+            <section class="panel database-panel-full">
+              <div class="panel-header">
+                <h3>Companies</h3>
+                <button class="secondary-button" data-entity-kind="company" type="button">Add</button>
+              </div>
+              <div id="companyList" class="entity-list entity-list-compact"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header">
+                <h3>TV Shows</h3>
+                <button class="secondary-button" data-entity-kind="show-tv" type="button">Add</button>
+              </div>
+              <div id="tvShowList" class="entity-list"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header">
+                <h3>PPV Shows</h3>
+                <button class="secondary-button" data-entity-kind="show-ppv" type="button">Add</button>
+              </div>
+              <div id="ppvShowList" class="entity-list"></div>
+            </section>
             <section class="panel">
               <div class="panel-header">
                 <h3>Wrestlers</h3>
@@ -150,20 +171,6 @@
                 <button class="secondary-button" data-entity-kind="team" type="button">Add</button>
               </div>
               <div id="teamList" class="entity-list"></div>
-            </section>
-            <section class="panel">
-              <div class="panel-header">
-                <h3>Shows</h3>
-                <button class="secondary-button" data-entity-kind="show" type="button">Add</button>
-              </div>
-              <div id="showList" class="entity-list"></div>
-            </section>
-            <section class="panel">
-              <div class="panel-header">
-                <h3>Companies</h3>
-                <button class="secondary-button" data-entity-kind="company" type="button">Add</button>
-              </div>
-              <div id="companyList" class="entity-list"></div>
             </section>
           </div>
         </section>

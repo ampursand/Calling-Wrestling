@@ -2,7 +2,7 @@
   const storageKey = "calling-it-state-v1";
   const themeKey = "calling-it-theme";
   const databaseSeedVersionKey = "calling-it-database-seed-version";
-  const databaseSeedVersion = "2026-05-21-companies-shows";
+  const databaseSeedVersion = "2026-05-21-companies-shows-split";
   let activeTheme = localStorage.getItem(themeKey) || "light";
 
   const showColors = {
@@ -32,33 +32,33 @@
       { id: "company-wwe", name: "WWE", notes: "Imported from Company Database" }
     ],
     shows: [
-      { id: "show-all-in", name: "All In", company: "AEW", notes: "34 occurrences" },
-      { id: "show-all-out", name: "All Out", company: "AEW", notes: "36 occurrences" },
-      { id: "show-backlash", name: "Backlash", company: "WWE", notes: "5 occurrences" },
-      { id: "show-battle-of-the-belts", name: "Battle of the Belts", company: "AEW", notes: "13 occurrences" },
-      { id: "show-collision", name: "Collision", company: "AEW", notes: "644 occurrences" },
-      { id: "show-dynasty", name: "DYNASTY", company: "AEW", notes: "31 occurrences" },
-      { id: "show-death-before-dishonor", name: "Death Before Dishonor", company: "ROH", notes: "13 occurrences" },
-      { id: "show-double-or-nothing", name: "Double or Nothing", company: "AEW", notes: "21 occurrences" },
-      { id: "show-dynamite", name: "Dynamite", company: "AEW", notes: "674 occurrences" },
-      { id: "show-elimination-chamber", name: "Elimination Chamber", company: "WWE", notes: "4 occurrences" },
-      { id: "show-final-battle", name: "Final Battle", company: "ROH", notes: "15 occurrences" },
-      { id: "show-forbidden-door", name: "Forbidden Door", company: "AEW/NJPW", notes: "29 occurrences" },
-      { id: "show-full-gear", name: "Full Gear", company: "AEW", notes: "36 occurrences" },
-      { id: "show-global-wars-uk", name: "Global Wars UK", company: "ROH", notes: "7 occurrences" },
-      { id: "show-njpw-dontaku", name: "NJPW Dontaku", company: "NJPW", notes: "9 occurrences" },
-      { id: "show-rampage", name: "Rampage", company: "AEW", notes: "64 occurrences" },
-      { id: "show-raw", name: "Raw", company: "WWE", notes: "23 occurrences" },
-      { id: "show-revolution", name: "Revolution", company: "AEW", notes: "25 occurrences" },
-      { id: "show-ring-of-honor", name: "Ring of Honor", company: "ROH", notes: "73 occurrences" },
-      { id: "show-royal-rumble", name: "Royal Rumble", company: "WWE", notes: "20 occurrences" },
-      { id: "show-saturday-night-main-event", name: "Saturday Night Main Event", company: "WWE", notes: "8 occurrences" },
-      { id: "show-smackdown", name: "Smackdown", company: "WWE", notes: "1 occurrence" },
-      { id: "show-summerslam", name: "SummerSlam", company: "WWE", notes: "8 occurrences" },
-      { id: "show-worlds-end", name: "World's End", company: "AEW", notes: "34 occurrences" },
-      { id: "show-wrestledream", name: "WrestleDream", company: "AEW", notes: "26 occurrences" },
-      { id: "show-wrestlekingdom", name: "WrestleKingdom", company: "NJPW", notes: "19 occurrences" },
-      { id: "show-wrestlemania", name: "Wrestlemania", company: "WWE", notes: "28 occurrences" }
+      { id: "show-all-in", name: "All In", company: "AEW", type: "PPV", notes: "34 occurrences" },
+      { id: "show-all-out", name: "All Out", company: "AEW", type: "PPV", notes: "36 occurrences" },
+      { id: "show-backlash", name: "Backlash", company: "WWE", type: "PPV", notes: "5 occurrences" },
+      { id: "show-battle-of-the-belts", name: "Battle of the Belts", company: "AEW", type: "TV", notes: "13 occurrences" },
+      { id: "show-collision", name: "Collision", company: "AEW", type: "TV", notes: "644 occurrences" },
+      { id: "show-dynasty", name: "DYNASTY", company: "AEW", type: "PPV", notes: "31 occurrences" },
+      { id: "show-death-before-dishonor", name: "Death Before Dishonor", company: "ROH", type: "PPV", notes: "13 occurrences" },
+      { id: "show-double-or-nothing", name: "Double or Nothing", company: "AEW", type: "PPV", notes: "21 occurrences" },
+      { id: "show-dynamite", name: "Dynamite", company: "AEW", type: "TV", notes: "674 occurrences" },
+      { id: "show-elimination-chamber", name: "Elimination Chamber", company: "WWE", type: "PPV", notes: "4 occurrences" },
+      { id: "show-final-battle", name: "Final Battle", company: "ROH", type: "PPV", notes: "15 occurrences" },
+      { id: "show-forbidden-door", name: "Forbidden Door", company: "AEW/NJPW", type: "PPV", notes: "29 occurrences" },
+      { id: "show-full-gear", name: "Full Gear", company: "AEW", type: "PPV", notes: "36 occurrences" },
+      { id: "show-global-wars-uk", name: "Global Wars UK", company: "ROH", type: "PPV", notes: "7 occurrences" },
+      { id: "show-njpw-dontaku", name: "NJPW Dontaku", company: "NJPW", type: "PPV", notes: "9 occurrences" },
+      { id: "show-rampage", name: "Rampage", company: "AEW", type: "TV", notes: "64 occurrences" },
+      { id: "show-raw", name: "Raw", company: "WWE", type: "TV", notes: "23 occurrences" },
+      { id: "show-revolution", name: "Revolution", company: "AEW", type: "PPV", notes: "25 occurrences" },
+      { id: "show-ring-of-honor", name: "Ring of Honor", company: "ROH", type: "TV", notes: "73 occurrences" },
+      { id: "show-royal-rumble", name: "Royal Rumble", company: "WWE", type: "PPV", notes: "20 occurrences" },
+      { id: "show-saturday-night-main-event", name: "Saturday Night Main Event", company: "WWE", type: "TV", notes: "8 occurrences" },
+      { id: "show-smackdown", name: "Smackdown", company: "WWE", type: "TV", notes: "1 occurrence" },
+      { id: "show-summerslam", name: "SummerSlam", company: "WWE", type: "PPV", notes: "8 occurrences" },
+      { id: "show-worlds-end", name: "World's End", company: "AEW", type: "PPV", notes: "34 occurrences" },
+      { id: "show-wrestledream", name: "WrestleDream", company: "AEW", type: "PPV", notes: "26 occurrences" },
+      { id: "show-wrestlekingdom", name: "WrestleKingdom", company: "NJPW", type: "PPV", notes: "19 occurrences" },
+      { id: "show-wrestlemania", name: "Wrestlemania", company: "WWE", type: "PPV", notes: "28 occurrences" }
     ],
     wrestlers: [
       { id: "w-hangman", name: "Hangman Page", company: "AEW", notes: "" },
@@ -165,6 +165,11 @@
     matchNotes: document.querySelector("#matchNotes"),
     predictionFields: document.querySelector("#predictionFields"),
     deleteMatchButton: document.querySelector("#deleteMatchButton"),
+    companyList: document.querySelector("#companyList"),
+    tvShowList: document.querySelector("#tvShowList"),
+    ppvShowList: document.querySelector("#ppvShowList"),
+    wrestlerList: document.querySelector("#wrestlerList"),
+    teamList: document.querySelector("#teamList"),
     entityDialog: document.querySelector("#entityDialog"),
     entityDialogTitle: document.querySelector("#entityDialogTitle"),
     entityForm: document.querySelector("#entityForm"),
@@ -428,10 +433,11 @@
   }
 
   function renderEntities() {
+    renderEntityList("company", state.companies, dom.companyList);
+    renderEntityList("show", state.shows.filter((show) => show.type === "TV"), dom.tvShowList);
+    renderEntityList("show", state.shows.filter((show) => show.type === "PPV"), dom.ppvShowList);
     renderEntityList("wrestler", state.wrestlers, dom.wrestlerList);
     renderEntityList("team", state.teams, dom.teamList);
-    renderEntityList("show", state.shows, dom.showList);
-    renderEntityList("company", state.companies, dom.companyList);
   }
 
   function renderEntityList(kind, items, node) {
@@ -439,7 +445,7 @@
       <div class="entity-row">
         <div>
           <strong>${escapeHtml(item.name)}</strong>
-          <div class="entity-meta">${escapeHtml([item.company, item.notes].filter(Boolean).join(" / "))}</div>
+          <div class="entity-meta">${escapeHtml([item.company, item.type, item.notes].filter(Boolean).join(" / "))}</div>
         </div>
         <button class="secondary-button" type="button" data-remove-entity="${kind}" data-entity-id="${item.id}">Remove</button>
       </div>
@@ -548,7 +554,7 @@
 
   function openEntityDialog(kind) {
     entityKind = kind;
-    dom.entityDialogTitle.textContent = "Add " + titleCase(kind);
+    dom.entityDialogTitle.textContent = "Add " + entityLabel(kind);
     dom.entityForm.reset();
     dom.entityDialog.showModal();
   }
@@ -561,6 +567,7 @@
       id: uid(entityKind),
       name: dom.entityName.value.trim(),
       company: dom.entityCompany.value.trim(),
+      type: entityKind === "show-tv" ? "TV" : entityKind === "show-ppv" ? "PPV" : undefined,
       notes: dom.entityNotes.value.trim()
     });
     saveState();
@@ -571,9 +578,15 @@
   function collectionForKind(kind) {
     if (kind === "wrestler") return state.wrestlers;
     if (kind === "team") return state.teams;
-    if (kind === "show") return state.shows;
+    if (kind === "show" || kind === "show-tv" || kind === "show-ppv") return state.shows;
     if (kind === "company") return state.companies;
     return null;
+  }
+
+  function entityLabel(kind) {
+    if (kind === "show-tv") return "TV Show";
+    if (kind === "show-ppv") return "PPV Show";
+    return titleCase(kind);
   }
 
   function exportJson() {

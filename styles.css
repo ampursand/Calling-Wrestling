@@ -497,6 +497,14 @@ textarea {
   gap: 18px;
 }
 
+.database-panel-full {
+  grid-column: 1 / -1;
+}
+
+.entity-list-compact {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .entity-row,
 .leader-row,
 .result-row {
@@ -580,7 +588,8 @@ dialog::backdrop {
   .metric-grid,
   .split-layout,
   .event-workspace,
-  .database-grid {
+  .database-grid,
+  .entity-list-compact {
     grid-template-columns: 1fr;
   }
 }
